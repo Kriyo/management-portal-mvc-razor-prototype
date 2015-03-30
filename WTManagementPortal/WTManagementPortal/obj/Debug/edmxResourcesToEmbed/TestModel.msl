@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WTDBModelStoreContainer" CdmEntityContainer="WTDBEntities">
+    <EntitySetMapping Name="AllAgents">
+      <EntityTypeMapping TypeName="WTDBModel.AllAgent">
+        <MappingFragment StoreEntitySet="AllAgents">
+          <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+          <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+          <ScalarProperty Name="AgentAlive" ColumnName="AgentAlive" />
+          <ScalarProperty Name="LastAgentHeartBeat" ColumnName="LastAgentHeartBeat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllTenants">
+      <EntityTypeMapping TypeName="WTDBModel.AllTenant">
+        <MappingFragment StoreEntitySet="AllTenants">
+          <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+          <ScalarProperty Name="TenantName" ColumnName="TenantName" />
+          <ScalarProperty Name="TenantDescription" ColumnName="TenantDescription" />
+          <ScalarProperty Name="AgentsCount" ColumnName="AgentsCount" />
+          <ScalarProperty Name="AgentsResponding" ColumnName="AgentsResponding" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllWatchPoints">
+      <EntityTypeMapping TypeName="WTDBModel.AllWatchPoint">
+        <MappingFragment StoreEntitySet="AllWatchPoints">
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+          <ScalarProperty Name="WatchPointID" ColumnName="WatchPointID" />
+          <ScalarProperty Name="WatchPointName" ColumnName="WatchPointName" />
+          <ScalarProperty Name="RootPath" ColumnName="RootPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestAgentDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="Agent_ID" />
+          </Key>
+          <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Agent_ID" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Agent_Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\KRI\DEV\DEVS\WTMANAGEMENTPORTAL\WTMANAGEMENTPORTAL\APP_DATA\TESTAGENTDATA.MDF.dbo.Watches' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Watches">
+          <Key>
+            <PropertyRef Name="Watch_Point_ID" />
+            <PropertyRef Name="Watch_Point_Name" />
+            <PropertyRef Name="Agent_ID" />
+            <PropertyRef Name="Watch_Point_Path" />
+          </Key>
+          <Property Name="Watch_Point_ID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Watch_Point_Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Agent_ID" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Watch_Point_Path" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Watches_Agents">
+          <End Role="Agents" Type="Self.Agents" Multiplicity="1" />
+          <End Role="Watches" Type="Self.Watches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="Agent_ID" />
+            </Principal>
+            <Dependent Role="Watches">
+              <PropertyRef Name="Agent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestAgentDataModelStoreContainer">
+          <EntitySet Name="Agents" EntityType="Self.Agents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Watches" EntityType="Self.Watches" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Watches].[Watch_Point_ID] AS [Watch_Point_ID], 
+[Watches].[Watch_Point_Name] AS [Watch_Point_Name], 
+[Watches].[Agent_ID] AS [Agent_ID], 
+[Watches].[Watch_Point_Path] AS [Watch_Point_Path]
+FROM [dbo].[Watches] AS [Watches]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Watches_Agents" Association="Self.FK_Watches_Agents">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Watches" EntitySet="Watches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestAgentDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="Agent_ID" />
+          </Key>
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Agent_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Agent_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Watches" Relationship="Self.FK_Watches_Agents" FromRole="Agents" ToRole="Watches" />
+        </EntityType>
+        <EntityType Name="Watch">
+          <Key>
+            <PropertyRef Name="Watch_Point_ID" />
+            <PropertyRef Name="Watch_Point_Name" />
+            <PropertyRef Name="Agent_ID" />
+            <PropertyRef Name="Watch_Point_Path" />
+          </Key>
+          <Property Name="Watch_Point_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Watch_Point_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Agent_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Watch_Point_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_Watches_Agents" FromRole="Watches" ToRole="Agents" />
+        </EntityType>
+        <Association Name="FK_Watches_Agents">
+          <End Role="Agents" Type="Self.Agent" Multiplicity="1" />
+          <End Role="Watches" Type="Self.Watch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="Agent_ID" />
+            </Principal>
+            <Dependent Role="Watches">
+              <PropertyRef Name="Agent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestAgentDataEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="Watches" EntityType="Self.Watch" />
+          <AssociationSet Name="FK_Watches_Agents" Association="Self.FK_Watches_Agents">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Watches" EntitySet="Watches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestAgentDataModelStoreContainer" CdmEntityContainer="TestAgentDataEntities1">
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="TestAgentDataModel.Agent">
+              <MappingFragment StoreEntitySet="Agents">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Agent_ID" ColumnName="Agent_ID" />
+                <ScalarProperty Name="Agent_Name" ColumnName="Agent_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Watches">
+            <EntityTypeMapping TypeName="TestAgentDataModel.Watch">
+              <MappingFragment StoreEntitySet="Watches">
+                <ScalarProperty Name="Watch_Point_ID" ColumnName="Watch_Point_ID" />
+                <ScalarProperty Name="Watch_Point_Name" ColumnName="Watch_Point_Name" />
+                <ScalarProperty Name="Agent_ID" ColumnName="Agent_ID" />
+                <ScalarProperty Name="Watch_Point_Path" ColumnName="Watch_Point_Path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

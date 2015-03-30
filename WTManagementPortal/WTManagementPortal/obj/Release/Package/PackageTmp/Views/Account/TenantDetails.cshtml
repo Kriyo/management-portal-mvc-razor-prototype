@@ -1,0 +1,48 @@
+﻿@model WTManagementPortal.Models.TenantDetailsModel
+@{
+    ViewBag.Title = "Organisation Details";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+<br/>
+<h2>Update account details for @Session["tenantInRegProcess"] .</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Update Form</legend>
+        <ol>
+            <li>
+                <p> Phone Number</p>
+                @Html.TextBoxFor(m => m.phoneNumber)
+                <p> Fax Number</p>
+                @Html.TextBoxFor(m => m.faxNumber)
+                <p> First line of address </p>
+                @Html.TextBoxFor(m => m.addressLine1)
+                <p> Second line of address </p>
+                @Html.TextBoxFor(m => m.addressLine2)
+                <p> City </p>
+                @Html.TextBoxFor(m => m.city)
+                <p> State </p>
+                @Html.TextBoxFor(m => m.state)
+                <p> Country </p>
+                @Html.TextBoxFor(m => m.country)
+                <p> Zip code </p>
+                @Html.TextBoxFor(m => m.zipcode)
+            </li>
+
+        </ol>
+        <input type="submit" value="update" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

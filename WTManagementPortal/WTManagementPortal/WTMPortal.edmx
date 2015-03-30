@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AllAgents">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="TenantID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="AgentID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="AgentName" Type="varchar" MaxLength="45" />
+          <Property Name="AgentAlive" Type="varchar" MaxLength="8" />
+          <Property Name="LastAgentHeartBeat" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="AllTenants">
+          <Key>
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="TenantID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="TenantName" Type="varchar" MaxLength="45" />
+          <Property Name="TenantDescription" Type="varchar" MaxLength="255" />
+          <Property Name="AgentsCount" Type="varchar" MaxLength="8" />
+          <Property Name="AgentsResponding" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="AllWatchPoints">
+          <Key>
+            <PropertyRef Name="WatchPointID" />
+          </Key>
+          <Property Name="AgentID" Type="varchar" MaxLength="128" />
+          <Property Name="WatchPointID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="WatchPointName" Type="varchar" MaxLength="1024" />
+          <Property Name="RootPath" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__AllAgents__Tenan__3C69FB99">
+          <End Role="AllTenants" Type="Self.AllTenants" Multiplicity="1" />
+          <End Role="AllAgents" Type="Self.AllAgents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllTenants">
+              <PropertyRef Name="TenantID" />
+            </Principal>
+            <Dependent Role="AllAgents">
+              <PropertyRef Name="TenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AllWatchP__Agent__3D5E1FD2">
+          <End Role="AllAgents" Type="Self.AllAgents" Multiplicity="0..1" />
+          <End Role="AllWatchPoints" Type="Self.AllWatchPoints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllAgents">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="AllWatchPoints">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WTDBModelStoreContainer">
+          <EntitySet Name="AllAgents" EntityType="Self.AllAgents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllTenants" EntityType="Self.AllTenants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllWatchPoints" EntityType="Self.AllWatchPoints" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AllAgents__Tenan__3C69FB99" Association="Self.FK__AllAgents__Tenan__3C69FB99">
+            <End Role="AllTenants" EntitySet="AllTenants" />
+            <End Role="AllAgents" EntitySet="AllAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AllWatchP__Agent__3D5E1FD2" Association="Self.FK__AllWatchP__Agent__3D5E1FD2">
+            <End Role="AllAgents" EntitySet="AllAgents" />
+            <End Role="AllWatchPoints" EntitySet="AllWatchPoints" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WTDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AllAgent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="TenantID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgentID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgentName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="AgentAlive" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="LastAgentHeartBeat" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AllTenant" Relationship="Self.FK__AllAgents__Tenan__3C69FB99" FromRole="AllAgents" ToRole="AllTenants" />
+          <NavigationProperty Name="AllWatchPoints" Relationship="Self.FK__AllWatchP__Agent__3D5E1FD2" FromRole="AllAgents" ToRole="AllWatchPoints" />
+        </EntityType>
+        <EntityType Name="AllTenant">
+          <Key>
+            <PropertyRef Name="TenantID" />
+          </Key>
+          <Property Name="TenantID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenantName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="TenantDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AgentsCount" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AgentsResponding" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AllAgents" Relationship="Self.FK__AllAgents__Tenan__3C69FB99" FromRole="AllTenants" ToRole="AllAgents" />
+        </EntityType>
+        <EntityType Name="AllWatchPoint">
+          <Key>
+            <PropertyRef Name="WatchPointID" />
+          </Key>
+          <Property Name="AgentID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="WatchPointID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WatchPointName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="RootPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AllAgent" Relationship="Self.FK__AllWatchP__Agent__3D5E1FD2" FromRole="AllWatchPoints" ToRole="AllAgents" />
+        </EntityType>
+        <Association Name="FK__AllAgents__Tenan__3C69FB99">
+          <End Role="AllTenants" Type="Self.AllTenant" Multiplicity="1" />
+          <End Role="AllAgents" Type="Self.AllAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllTenants">
+              <PropertyRef Name="TenantID" />
+            </Principal>
+            <Dependent Role="AllAgents">
+              <PropertyRef Name="TenantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AllWatchP__Agent__3D5E1FD2">
+          <End Role="AllAgents" Type="Self.AllAgent" Multiplicity="0..1" />
+          <End Role="AllWatchPoints" Type="Self.AllWatchPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllAgents">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="AllWatchPoints">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WTPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AllAgents" EntityType="Self.AllAgent" />
+          <EntitySet Name="AllTenants" EntityType="Self.AllTenant" />
+          <EntitySet Name="AllWatchPoints" EntityType="Self.AllWatchPoint" />
+          <AssociationSet Name="FK__AllAgents__Tenan__3C69FB99" Association="Self.FK__AllAgents__Tenan__3C69FB99">
+            <End Role="AllTenants" EntitySet="AllTenants" />
+            <End Role="AllAgents" EntitySet="AllAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AllWatchP__Agent__3D5E1FD2" Association="Self.FK__AllWatchP__Agent__3D5E1FD2">
+            <End Role="AllAgents" EntitySet="AllAgents" />
+            <End Role="AllWatchPoints" EntitySet="AllWatchPoints" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WTDBModelStoreContainer" CdmEntityContainer="WTPortalEntities">
+          <EntitySetMapping Name="AllAgents">
+            <EntityTypeMapping TypeName="WTDBModel.AllAgent">
+              <MappingFragment StoreEntitySet="AllAgents">
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="AgentAlive" ColumnName="AgentAlive" />
+                <ScalarProperty Name="LastAgentHeartBeat" ColumnName="LastAgentHeartBeat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllTenants">
+            <EntityTypeMapping TypeName="WTDBModel.AllTenant">
+              <MappingFragment StoreEntitySet="AllTenants">
+                <ScalarProperty Name="TenantID" ColumnName="TenantID" />
+                <ScalarProperty Name="TenantName" ColumnName="TenantName" />
+                <ScalarProperty Name="TenantDescription" ColumnName="TenantDescription" />
+                <ScalarProperty Name="AgentsCount" ColumnName="AgentsCount" />
+                <ScalarProperty Name="AgentsResponding" ColumnName="AgentsResponding" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllWatchPoints">
+            <EntityTypeMapping TypeName="WTDBModel.AllWatchPoint">
+              <MappingFragment StoreEntitySet="AllWatchPoints">
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="WatchPointID" ColumnName="WatchPointID" />
+                <ScalarProperty Name="WatchPointName" ColumnName="WatchPointName" />
+                <ScalarProperty Name="RootPath" ColumnName="RootPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestAgentDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agents">
+    <Key>
+      <PropertyRef Name="Agent_ID" />
+    </Key>
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Agent_ID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Agent_Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\KRI\DEV\DEVS\WTMANAGEMENTPORTAL\WTMANAGEMENTPORTAL\APP_DATA\TESTAGENTDATA.MDF.dbo.Watches' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Watches">
+    <Key>
+      <PropertyRef Name="Agent_ID" />
+    </Key>
+    <Property Name="Watch_Point_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Watch_Point_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Agent_ID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Watch_Point_Path" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Watches_Agents">
+    <End Role="Agents" Type="Self.Agents" Multiplicity="1" />
+    <End Role="Watches" Type="Self.Watches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agents">
+        <PropertyRef Name="Agent_ID" />
+      </Principal>
+      <Dependent Role="Watches">
+        <PropertyRef Name="Agent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestAgentDataModelStoreContainer">
+    <EntitySet Name="Agents" EntityType="Self.Agents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Watches" EntityType="Self.Watches" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Watches].[Watch_Point_ID] AS [Watch_Point_ID], 
+[Watches].[Watch_Point_Name] AS [Watch_Point_Name], 
+[Watches].[Agent_ID] AS [Agent_ID], 
+[Watches].[Watch_Point_Path] AS [Watch_Point_Path]
+FROM [dbo].[Watches] AS [Watches]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Watches_Agents" Association="Self.FK_Watches_Agents">
+      <End Role="Agents" EntitySet="Agents" />
+      <End Role="Watches" EntitySet="Watches" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

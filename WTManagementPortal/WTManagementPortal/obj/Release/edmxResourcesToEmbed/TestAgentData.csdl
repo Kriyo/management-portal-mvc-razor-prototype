@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestAgentDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="Agent_ID" />
+    </Key>
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Agent_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Agent_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Watches" Relationship="Self.FK_Watches_Agents" FromRole="Agents" ToRole="Watches" />
+  </EntityType>
+  <EntityType Name="Watch">
+    <Key>
+      <PropertyRef Name="Watch_Point_ID" />
+      <PropertyRef Name="Watch_Point_Name" />
+      <PropertyRef Name="Agent_ID" />
+      <PropertyRef Name="Watch_Point_Path" />
+    </Key>
+    <Property Name="Watch_Point_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Watch_Point_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Agent_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Watch_Point_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK_Watches_Agents" FromRole="Watches" ToRole="Agents" />
+  </EntityType>
+  <Association Name="FK_Watches_Agents">
+    <End Role="Agents" Type="Self.Agent" Multiplicity="1" />
+    <End Role="Watches" Type="Self.Watch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agents">
+        <PropertyRef Name="Agent_ID" />
+      </Principal>
+      <Dependent Role="Watches">
+        <PropertyRef Name="Agent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestAgentDataEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Watches" EntityType="Self.Watch" />
+    <AssociationSet Name="FK_Watches_Agents" Association="Self.FK_Watches_Agents">
+      <End Role="Agents" EntitySet="Agents" />
+      <End Role="Watches" EntitySet="Watches" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

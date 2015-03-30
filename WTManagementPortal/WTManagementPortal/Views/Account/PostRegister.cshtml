@@ -1,0 +1,16 @@
+﻿@model WTManagementPortal.Models.PostRegistrationModel
+@{
+    ViewBag.Title = "PostRegister";
+}
+
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+   
+</hgroup>
+
+<p> Congratulations @User.Identity.Name, you have successfully registered</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

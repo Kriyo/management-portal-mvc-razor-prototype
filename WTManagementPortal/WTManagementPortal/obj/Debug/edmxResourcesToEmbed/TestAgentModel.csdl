@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestAgentDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agents">
+    <Key>
+      <PropertyRef Name="Agent_ID" />
+    </Key>
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Agent_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Agent_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Watches" Relationship="TestAgentDataModel.FK_Watches_Agents" FromRole="Agents" ToRole="Watches" />
+  </EntityType>
+  <EntityType Name="Watches">
+    <Key>
+      <PropertyRef Name="Agent_ID" />
+    </Key>
+    <Property Name="Watch_Point_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Watch_Point_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Watch_Point_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Agent_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="TestAgentDataModel.FK_Watches_Agents" FromRole="Watches" ToRole="Agents" />
+  </EntityType>
+  <EntityContainer Name="TestAgentDataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="TestAgentDataModel.Agents" />
+    <EntitySet Name="Watches" EntityType="TestAgentDataModel.Watches" />
+    <AssociationSet Name="FK_Watches_Agents" Association="TestAgentDataModel.FK_Watches_Agents">
+      <End Role="Agents" EntitySet="Agents" />
+      <End Role="Watches" EntitySet="Watches" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Watches_Agents">
+    <End Type="TestAgentDataModel.Agents" Role="Agents" Multiplicity="1" />
+    <End Type="TestAgentDataModel.Watches" Role="Watches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agents">
+        <PropertyRef Name="Agent_ID" />
+      </Principal>
+      <Dependent Role="Watches">
+        <PropertyRef Name="Agent_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

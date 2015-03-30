@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Kri" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="Kri/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="ApplicationServices-Web.config Connection String" description="" value="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\aspnet-WTManagementPortal-20140707135403.mdf;Initial Catalog=aspnet-WTManagementPortal-20140707135403;Integrated Security=True;User Instance=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationServices']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="DefaultConnection_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="TestAgentDataEntities-Web.config Connection String" description="" value="metadata=res://*/TestAgentModel.csdl|res://*/TestAgentModel.ssdl|res://*/TestAgentModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\v11.0;attachdbfilename=|DataDirectory|\TestAgentData.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TestAgentDataEntities']/@connectionString" />
+  </parameter>
+  <parameter name="TestAgentDataEntities1-Web.config Connection String" description="" value="metadata=res://*/TestAgentData.csdl|res://*/TestAgentData.ssdl|res://*/TestAgentData.msl;&#xD;&#xA;         provider=System.Data.SqlClient;provider connection string=&quot;&#xD;&#xA;         data source=(LocalDB)\v11.0;attachdbfilename=|DataDirectory|\TestAgentData.mdf;&#xD;&#xA;         integrated security=True;&#xD;&#xA;         multipleactiveresultsets=True;&#xD;&#xA;         application name=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Kri\\Dev\\devs\\WTManagementPortal\\WTManagementPortal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TestAgentDataEntities1']/@connectionString" />
+  </parameter>
+</parameters>

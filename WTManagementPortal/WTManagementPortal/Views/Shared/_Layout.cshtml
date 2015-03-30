@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title Waterford Technologies</title>
+        <link href="/wt-logo.png" rel="shortcut icon" type="image/png" />
+        <meta name="viewport" content="width=device-width" />
+        @using WTManagementPortal.App_Code
+        @Styles.Render("~/Content/less")
+        @Styles.Render("~/Content/bootstrapcss")
+        @Styles.Render("~/Content/bootstraprcss")
+        @Styles.Render("~/Content/sitecss")
+        @Styles.Render("~/Content/iconicbootstrap")
+        @Styles.Render("~/Content/iconic")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        <meta name="description" content="Waterford Technologies - File Archiver" />
+</head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="oi" data-glyph="menu"></span></a>
+                    <a class="brand wt-header" href="@Url.Action("Index","Home")">
+                        <img class="wt-header-logo" src="@Url.Content("~/images/wt-logo.png")" />
+                        <span>Waterford Technologies</span>
+                    </a>
+                    <div class="nav-collapse collapse" id="main-menu">
+                        <ul class="nav" id="main-menu-left">
+                            <li class="@Html.IsSelected(action: "Index")">
+                                <a href="@Url.Action("../Home/Index")">Home</a>
+                            </li>
+                            <li class="@Html.IsSelected(action: "About")">
+                                <a href="@Url.Action("../Home/About")">About</a>
+                            </li>
+                            <li class="@Html.IsSelected(action: "Contact")">
+                                <a href="@Url.Action("../Home/Contact")">Contact</a>
+                            </li>
+                            <li class="@Html.IsSelected(action: "Main")">
+                                <a href="@Url.Action("../Dashboard/Main")">Dashboard</a>
+                            </li>
+                        </ul>
+                        <ul class="nav pull-right" id="main-menu-right">
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wt-container">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>    
+        @Scripts.Render("~/bundles/bootstrapjs")
+        @Scripts.Render("~/bundles/charts")
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/dashboard")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

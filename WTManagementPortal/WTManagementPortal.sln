@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTManagementPortal", "WTManagementPortal\WTManagementPortal.csproj", "{956AF92E-4154-4F31-AC38-193ED74D172F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{FF54A1F0-A58E-498C-B7FC-7FF8A2F624C3}"
+	ProjectSection(SolutionItems) = preProject
+		WTManagementPortal\InverCloudLib\Antlr3.Runtime.dll = WTManagementPortal\InverCloudLib\Antlr3.Runtime.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.Audit.dll = WTManagementPortal\InverCloudLib\AspiraCloud.Audit.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.AuditActions.dll = WTManagementPortal\InverCloudLib\AspiraCloud.AuditActions.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.Configuration.dll = WTManagementPortal\InverCloudLib\AspiraCloud.Configuration.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.DataEncryption.dll = WTManagementPortal\InverCloudLib\AspiraCloud.DataEncryption.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.Exceptions.dll = WTManagementPortal\InverCloudLib\AspiraCloud.Exceptions.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.Providers.dll = WTManagementPortal\InverCloudLib\AspiraCloud.Providers.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.ServiceClient.dll = WTManagementPortal\InverCloudLib\AspiraCloud.ServiceClient.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.ServiceProxy.dll = WTManagementPortal\InverCloudLib\AspiraCloud.ServiceProxy.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.Shared.dll = WTManagementPortal\InverCloudLib\AspiraCloud.Shared.dll
+		WTManagementPortal\InverCloudLib\AspiraCloud.Shared.SAML.dll = WTManagementPortal\InverCloudLib\AspiraCloud.Shared.SAML.dll
+		WTManagementPortal\InverCloudLib\ComponentSpace.SAML2.dll = WTManagementPortal\InverCloudLib\ComponentSpace.SAML2.dll
+		WTManagementPortal\InverCloudLib\Diagnostics.dll = WTManagementPortal\InverCloudLib\Diagnostics.dll
+		WTManagementPortal\InverCloudLib\log4net.dll = WTManagementPortal\InverCloudLib\log4net.dll
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WTDatabase", "WTDatabase\WTDatabase.sqlproj", "{978203DD-85FE-4227-932A-3C543CEAA8BC}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://invercloud.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WTManagementPortal\\WTManagementPortal.csproj
+		SccProjectName1 = WTManagementPortal
+		SccLocalPath1 = WTManagementPortal
+		SccProjectUniqueName2 = WTDatabase\\WTDatabase.sqlproj
+		SccProjectName2 = WTDatabase
+		SccLocalPath2 = WTDatabase
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{956AF92E-4154-4F31-AC38-193ED74D172F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956AF92E-4154-4F31-AC38-193ED74D172F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956AF92E-4154-4F31-AC38-193ED74D172F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956AF92E-4154-4F31-AC38-193ED74D172F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{978203DD-85FE-4227-932A-3C543CEAA8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{978203DD-85FE-4227-932A-3C543CEAA8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{978203DD-85FE-4227-932A-3C543CEAA8BC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{978203DD-85FE-4227-932A-3C543CEAA8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{978203DD-85FE-4227-932A-3C543CEAA8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{978203DD-85FE-4227-932A-3C543CEAA8BC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

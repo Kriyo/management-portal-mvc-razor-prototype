@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AllAgents">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="TenantID" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="AgentID" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="AgentName" Type="varchar" MaxLength="45" />
+    <Property Name="AgentAlive" Type="varchar" MaxLength="8" />
+    <Property Name="LastAgentHeartBeat" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="AllTenants">
+    <Key>
+      <PropertyRef Name="TenantID" />
+    </Key>
+    <Property Name="TenantID" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="TenantName" Type="varchar" MaxLength="45" />
+    <Property Name="TenantDescription" Type="varchar" MaxLength="255" />
+    <Property Name="AgentsCount" Type="varchar" MaxLength="8" />
+    <Property Name="AgentsResponding" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="AllWatchPoints">
+    <Key>
+      <PropertyRef Name="WatchPointID" />
+    </Key>
+    <Property Name="AgentID" Type="varchar" MaxLength="128" />
+    <Property Name="WatchPointID" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="WatchPointName" Type="varchar" MaxLength="1024" />
+    <Property Name="RootPath" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__AllAgents__Tenan__3C69FB99">
+    <End Role="AllTenants" Type="Self.AllTenants" Multiplicity="1" />
+    <End Role="AllAgents" Type="Self.AllAgents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AllTenants">
+        <PropertyRef Name="TenantID" />
+      </Principal>
+      <Dependent Role="AllAgents">
+        <PropertyRef Name="TenantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AllWatchP__Agent__3D5E1FD2">
+    <End Role="AllAgents" Type="Self.AllAgents" Multiplicity="0..1" />
+    <End Role="AllWatchPoints" Type="Self.AllWatchPoints" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AllAgents">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="AllWatchPoints">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WTDBModelStoreContainer">
+    <EntitySet Name="AllAgents" EntityType="Self.AllAgents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AllTenants" EntityType="Self.AllTenants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AllWatchPoints" EntityType="Self.AllWatchPoints" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AllAgents__Tenan__3C69FB99" Association="Self.FK__AllAgents__Tenan__3C69FB99">
+      <End Role="AllTenants" EntitySet="AllTenants" />
+      <End Role="AllAgents" EntitySet="AllAgents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AllWatchP__Agent__3D5E1FD2" Association="Self.FK__AllWatchP__Agent__3D5E1FD2">
+      <End Role="AllAgents" EntitySet="AllAgents" />
+      <End Role="AllWatchPoints" EntitySet="AllWatchPoints" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

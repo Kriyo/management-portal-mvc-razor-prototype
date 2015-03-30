@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WTDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AllAgent">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="TenantID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgentID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgentName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="AgentAlive" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="LastAgentHeartBeat" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AllTenant" Relationship="Self.FK__AllAgents__Tenan__3C69FB99" FromRole="AllAgents" ToRole="AllTenants" />
+    <NavigationProperty Name="AllWatchPoints" Relationship="Self.FK__AllWatchP__Agent__3D5E1FD2" FromRole="AllAgents" ToRole="AllWatchPoints" />
+  </EntityType>
+  <EntityType Name="AllTenant">
+    <Key>
+      <PropertyRef Name="TenantID" />
+    </Key>
+    <Property Name="TenantID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenantName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="TenantDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AgentsCount" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="AgentsResponding" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AllAgents" Relationship="Self.FK__AllAgents__Tenan__3C69FB99" FromRole="AllTenants" ToRole="AllAgents" />
+  </EntityType>
+  <EntityType Name="AllWatchPoint">
+    <Key>
+      <PropertyRef Name="WatchPointID" />
+    </Key>
+    <Property Name="AgentID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="WatchPointID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WatchPointName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="RootPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AllAgent" Relationship="Self.FK__AllWatchP__Agent__3D5E1FD2" FromRole="AllWatchPoints" ToRole="AllAgents" />
+  </EntityType>
+  <Association Name="FK__AllAgents__Tenan__3C69FB99">
+    <End Role="AllTenants" Type="Self.AllTenant" Multiplicity="1" />
+    <End Role="AllAgents" Type="Self.AllAgent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AllTenants">
+        <PropertyRef Name="TenantID" />
+      </Principal>
+      <Dependent Role="AllAgents">
+        <PropertyRef Name="TenantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AllWatchP__Agent__3D5E1FD2">
+    <End Role="AllAgents" Type="Self.AllAgent" Multiplicity="0..1" />
+    <End Role="AllWatchPoints" Type="Self.AllWatchPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AllAgents">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="AllWatchPoints">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WTPortalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AllAgents" EntityType="Self.AllAgent" />
+    <EntitySet Name="AllTenants" EntityType="Self.AllTenant" />
+    <EntitySet Name="AllWatchPoints" EntityType="Self.AllWatchPoint" />
+    <AssociationSet Name="FK__AllAgents__Tenan__3C69FB99" Association="Self.FK__AllAgents__Tenan__3C69FB99">
+      <End Role="AllTenants" EntitySet="AllTenants" />
+      <End Role="AllAgents" EntitySet="AllAgents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AllWatchP__Agent__3D5E1FD2" Association="Self.FK__AllWatchP__Agent__3D5E1FD2">
+      <End Role="AllAgents" EntitySet="AllAgents" />
+      <End Role="AllWatchPoints" EntitySet="AllWatchPoints" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

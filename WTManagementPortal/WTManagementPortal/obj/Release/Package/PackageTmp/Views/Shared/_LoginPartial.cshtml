@@ -1,0 +1,20 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="nav pull-right">
+        <li>
+            Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
+            @using (Html.BeginForm("SAMLLogOff", "SAML", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            }
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav pull-right">
+        <li><a href="http://MarketPlace/Account/RegisterReferral?appId=1">Register</a></li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

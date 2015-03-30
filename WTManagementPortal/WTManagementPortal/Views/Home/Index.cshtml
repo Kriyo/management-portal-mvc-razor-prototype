@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!--Need larger / better image-->
+<div class="hero-unit wt-jumbo">
+    <div class="jumbotext">
+        <hgroup class="title">
+            <h1>Vision <br><small>Sometimes it's better to call it passion</small></h1>
+        </hgroup>
+    </div>
+    <div class="jumbotext">
+        <p class="lead">
+            Our vision is to provide broadly capable email, file and eDiscovery solutions that are simple to deploy, easy to use and<br /> capable beyond all others at our price point.  We look forward to sharing our vision, our passion, with you.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="wt-subhead">
+                <h2>File Archiver </h2> <span class="lead">Provides four capabilities to assist you in saving storage:</span>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <ul class="thumbnails">
+                <li class="span3">
+                    <div class="wt-thumb">
+                        <a href="@Url.Action("ChartsIndex", "Charts")">
+                            <img class="lift-img" src="@Url.Content("~/images/metro-assets/reporting.png")" alt="reporting">
+                        </a>
+                        <h3>Reporting</h3>
+                        <p>View your files by server, by owner, by size, by type, by name, etc., to pinpoint any abuse of your storage</p>
+                    </div>
+                </li>
+                <li class="span3">
+                    <div class="wt-thumb">
+                        <a href="@Url.Action("ChartsIndex", "Charts")">
+                            <img class="lift-img" src="@Url.Content("~/images/metro-assets/deleting.png")" alt="deleting">
+                        </a>
+                        <h3>Deleting</h3>
+                        <p>Clean up your file servers and purge old and unneeded files. From any report, just check the box next to a file name and click Delete. Reclaim your storage in minutes</p>
+                    </div>
+                </li>
+                <li class="span3">
+                    <div class="wt-thumb">
+                        <a href="@Url.Action("ChartsIndex", "Charts")">
+                            <img class="lift-img" src="@Url.Content("~/images/metro-assets/archiving.png")" alt="archiving">
+                        </a>
+                        <h3>Archiving</h3>
+                        <p>Protect files by copying them to the archive server. Move older versions of files to the archive</p>
+                    </div>
+                </li>
+                <li class="span3">
+                    <div class="wt-thumb">
+                        <a href="@Url.Action("ChartsIndex", "Charts")">
+                            <img class="lift-img" src="@Url.Content("~/images/metro-assets/stubbing.png")" alt="stubbing">
+                        </a>
+                        <h3>Stubbing</h3>
+                        <p>Reclaim storage space without disrupting users. Remove older files from file servers and replace them with an intelligent “stub” that automatically retrieves the original file from the archive.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        @Html.Partial("_Footer")
+    </div>
+</div>

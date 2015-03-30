@@ -1,0 +1,74 @@
+09/09/2014 12:50:31	This log contains information about the import schema operation into project 'WTDatabase' on computer 'PAT-SAMSUNG-PC' by user 'jamiemorrissey'.
+09/09/2014 12:50:32	Import of database schema has started.
+09/09/2014 12:50:38	Gathering database options
+09/09/2014 12:50:38	Gathering users
+09/09/2014 12:50:38	Gathering roles
+09/09/2014 12:50:38	Gathering application roles
+09/09/2014 12:50:38	Gathering role memberships
+09/09/2014 12:50:38	Gathering filegroups
+09/09/2014 12:50:38	Gathering full-text catalogs
+09/09/2014 12:50:38	Gathering assemblies
+09/09/2014 12:50:38	Gathering certificates
+09/09/2014 12:50:38	Gathering asymmetric keys
+09/09/2014 12:50:38	Gathering symmetric keys
+09/09/2014 12:50:38	Gathering encrypted symmetric keys
+09/09/2014 12:50:38	Gathering schemas
+09/09/2014 12:50:38	Gathering XML schema collections
+09/09/2014 12:50:38	Gathering user-defined data types
+09/09/2014 12:50:38	Gathering user-defined types
+09/09/2014 12:50:38	Gathering table types
+09/09/2014 12:50:38	Gathering unique keys for table types
+09/09/2014 12:50:38	Gathering primary keys for table types
+09/09/2014 12:50:38	Gathering check constraints for table types
+09/09/2014 12:50:38	Gathering default constraints for table types
+09/09/2014 12:50:38	Gathering partition functions
+09/09/2014 12:50:38	Gathering partition schemes
+09/09/2014 12:50:38	Gathering functions
+09/09/2014 12:50:38	Gathering encrypted functions
+09/09/2014 12:50:38	Gathering aggregates
+09/09/2014 12:50:38	Gathering procedures
+09/09/2014 12:50:38	Gathering encrypted procedures
+09/09/2014 12:50:38	Gathering tables
+09/09/2014 12:50:38	Gathering primary keys
+09/09/2014 12:50:38	Gathering unique constraints
+09/09/2014 12:50:38	Gathering foreign keys
+09/09/2014 12:50:38	Gathering default constraints
+09/09/2014 12:50:38	Gathering check constraints
+09/09/2014 12:50:38	Gathering views
+09/09/2014 12:50:38	Gathering encrypted views
+09/09/2014 12:50:38	Gathering indexes
+09/09/2014 12:50:38	Gathering statistics
+09/09/2014 12:50:38	Gathering full-text index stoplists
+09/09/2014 12:50:38	Gathering search property lists
+09/09/2014 12:50:38	Gathering search properties
+09/09/2014 12:50:38	Gathering full-text indexes
+09/09/2014 12:50:38	Gathering column store indexes
+09/09/2014 12:50:38	Gathering spatial indexes
+09/09/2014 12:50:38	Gathering XML indexes
+09/09/2014 12:50:38	Gathering Selective XML indexes
+09/09/2014 12:50:38	Gathering encrypted triggers
+09/09/2014 12:50:38	Gathering triggers
+09/09/2014 12:50:38	Gathering encrypted and clr ddl triggers
+09/09/2014 12:50:38	Gathering ddl triggers
+09/09/2014 12:50:38	Gathering synonyms
+09/09/2014 12:50:38	Gathering defaults
+09/09/2014 12:50:38	Gathering data constraint uddt bindings
+09/09/2014 12:50:38	Gathering rules
+09/09/2014 12:50:38	Gathering data constraint uddt bindings
+09/09/2014 12:50:38	Gathering message types
+09/09/2014 12:50:38	Gathering queues
+09/09/2014 12:50:38	Gathering contracts
+09/09/2014 12:50:38	Gathering services
+09/09/2014 12:50:38	Gathering event notifications
+09/09/2014 12:50:38	Gathering remote service bindings
+09/09/2014 12:50:38	Gathering broker priorities
+09/09/2014 12:50:38	Gathering signatures
+09/09/2014 12:50:38	Gathering data compression options
+09/09/2014 12:50:38	Gathering sequence types
+09/09/2014 12:50:38	Gathering extended properties
+09/09/2014 12:50:38	Gathering credentials
+09/09/2014 12:50:38	Gathering logins
+09/09/2014 12:50:38	Gathering server audits
+09/09/2014 12:50:38	Finished importing database.
+09/09/2014 12:50:38	A summary of the import was saved to the following location: C:\ICTFS\Invercloud\Sources\WTManagementPortal\WTDatabase\Import Schema Logs\WTDatabase_20140909115031.log
+09/09/2014 12:50:38	Click Finish to continue...

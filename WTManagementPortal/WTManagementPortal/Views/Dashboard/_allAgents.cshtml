@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WTManagementPortal.ViewModels.DashboardGrid>
+
+<h2>All Agents</h2>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div id="main">
+            @{
+                WebGrid grid = new WebGrid(source: Model, ajaxUpdateCallback: "gridLayout", canPage: true, canSort: false, rowsPerPage: 2, ajaxUpdateContainerId: "main");
+                grid.Pager(WebGridPagerModes.FirstLast);
+
+            @grid.GetHtml(
+                htmlAttributes: new { id = "gridT", @class = "table table-bordered table-striped table-hover" },
+                columns: grid.Columns(
+                    grid.Column("agentList.AgentAlive", "Status", style: "statusCheck"),
+                    grid.Column("agentList.AgentID", "Agent ID"),
+                    grid.Column("agentList.AgentName", "Agent Name"),
+                    grid.Column(format: (item) =>
+                   {
+                       WebGrid subGrid = new WebGrid(source: item.agentDetails, canPage: true, canSort: false, rowsPerPage:5, ajaxUpdateContainerId: "subT");
+                        subGrid.Pager(WebGridPagerModes.FirstLast);                        
+                        return subGrid.GetHtml(
+                            htmlAttributes: new { id = "subT" },
+                            columns: subGrid.Columns(
+                                subGrid.Column("WatchPointID", "Watch Point ID"),
+                                subGrid.Column("WatchPointName", "Watch Point Name"),
+                                subGrid.Column("RootPath", "Watch Point Path")
+                           ) 
+                        );
+                    }
+                )
+            )
+        )
+        }
+        </div>
+    </div>
+</div>
+

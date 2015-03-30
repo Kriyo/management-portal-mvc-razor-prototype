@@ -1,0 +1,123 @@
+﻿@model IEnumerable<WTManagementPortal.ViewModels.DashboardGrid>
+@{
+    ViewBag.Title = "ListAgents";
+    WebGrid grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10, canSort: false);
+    grid.Pager(WebGridPagerModes.FirstLast);
+}
+
+<style>
+    th, td {
+        padding: 5px;
+    }
+
+    #gridT, #gridT tr {
+        border: 1px solid #ddd;
+    }
+
+    .hoverEff {
+        cursor: pointer;
+    }
+
+        .hoverEff:hover {
+            background-color: rgb(248, 242, 242);
+        }
+
+        .hoverEff.collapse, hover.hoverEff.expand {
+            width: 50px;
+        }
+
+    .expand {
+        background-image: url(../../Images/grid-expand.png);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .collapse {
+        background-image: url(../../Images/grid-collapse.png);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    #gridT > tfoot > tr > td {
+        text-align: center;
+        padding: 15px 0;
+    }
+
+        #gridT > tfoot > tr > td > a {
+            padding: 4px 12px;
+            margin-right: 5px;
+            line-height: 20px;
+            text-decoration: none;
+            background-color: #dfdfdf;
+            border: 1px solid transparent;
+            border-left-width: 0;
+        }
+
+        #gridT > tfoot > tr > td > .current {
+            background-color: #007fff;
+            color: #fff;
+        }
+
+        #gridT > tfoot > tr > td > a:hover {
+            background-color: #000 !important;
+            color: #FFF !important;
+        }
+
+    #subT > thead > tr {
+        background: #555;
+    }
+
+        #subT > thead > tr:hover {
+            background: #555 !important;
+        }
+
+        #subT > thead > tr > th > a {
+            color: #FFF !important;
+        }
+
+    #subT > thead:hover {
+        background-color: #555 !important;
+    }
+
+    #subT, #subT tr {
+        border: 1px solid #ddd;
+    }
+
+    #subT {
+        margin: 10px;
+        padding: 10px;
+        width: 98%;
+    }
+
+        #subT th {
+            font-size: 12px;
+        }
+</style>
+
+<h2>ListAgents</h2>
+
+<div class="span12">
+    <div id="main" style="padding:25px; background-color:white;">
+        @grid.GetHtml(
+            htmlAttributes: new { id = "gridT", width = "900px", @class = "table table-bordered table-striped table-hover" },
+            columns: grid.Columns(
+                grid.Column("agentList.Status", "Status"),
+                grid.Column("agentList.Agent_ID", "Agent ID"),
+                grid.Column("agentList.Agent_Name", "Agent Name"),
+                grid.Column(format: (item) =>
+                {
+                    WebGrid subGrid = new WebGrid(source: item.agentDetails);
+                    return subGrid.GetHtml(
+                        htmlAttributes: new { id = "subT" },
+                        columns: subGrid.Columns(
+                            subGrid.Column("Watch_Point_ID", "Watch Point ID"),
+                            subGrid.Column("Watch_Point_Name", "Watch Point Name"),
+                            subGrid.Column("Watch_Point_Path", "Watch Point Path")
+                        )
+                    );
+                }
+            )
+        )
+    )
+    </div>
+</div>

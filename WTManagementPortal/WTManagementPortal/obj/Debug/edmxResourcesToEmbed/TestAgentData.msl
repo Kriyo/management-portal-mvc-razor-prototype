@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestAgentDataModelStoreContainer" CdmEntityContainer="TestAgentDataEntities1">
+    <EntitySetMapping Name="Agents">
+      <EntityTypeMapping TypeName="TestAgentDataModel.Agent">
+        <MappingFragment StoreEntitySet="Agents">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Agent_ID" ColumnName="Agent_ID" />
+          <ScalarProperty Name="Agent_Name" ColumnName="Agent_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Watches">
+      <EntityTypeMapping TypeName="TestAgentDataModel.Watch">
+        <MappingFragment StoreEntitySet="Watches">
+          <ScalarProperty Name="Watch_Point_ID" ColumnName="Watch_Point_ID" />
+          <ScalarProperty Name="Watch_Point_Name" ColumnName="Watch_Point_Name" />
+          <ScalarProperty Name="Agent_ID" ColumnName="Agent_ID" />
+          <ScalarProperty Name="Watch_Point_Path" ColumnName="Watch_Point_Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
